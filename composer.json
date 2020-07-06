@@ -1,0 +1,38 @@
+{
+  "name": "opxcore/validator",
+  "description": "OpxCore Validator component.",
+  "type": "library",
+  "keywords": [
+    "opxcore",
+    "validator"
+  ],
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/opxcore/validator/issues",
+    "source": "https://github.com/opxcore/validator"
+  },
+  "authors": [
+    {
+      "name": "Lozovoy Vyacheslav",
+      "email": "opxcore@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "nesbot/carbon": "^2.35.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~9.1.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpxCore\\Validator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "OpxCore\\Tests\\Validator\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev"
+}
