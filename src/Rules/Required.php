@@ -17,6 +17,7 @@ use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 class Required implements Rule
 {
     use ChecksNotEmpty;
+
     /**
      * The field under validation must not be empty when it is present.
      *
