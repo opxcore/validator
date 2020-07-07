@@ -46,9 +46,12 @@ class RequiredIfTest extends TestCase
     {
         $rule = new RequiredIf(true);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
+        $this->assertFalse($rule->check('name', ['name' => null]));
+        $this->assertFalse($rule->check('name', ['wrong_name' => 'yes']));
 
         $rule = new RequiredIf(false);
         $this->assertFalse($rule->check('name', ['name' => 'yes']));
+        $this->assertFalse($rule->check('name', ['name' => null]));
     }
 
     public function testCallableCheck(): void
