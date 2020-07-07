@@ -10,14 +10,14 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\RequiredWithAll;
+use OpxCore\Validator\Rules\RequiredWithAllRule;
 use PHPUnit\Framework\TestCase;
 
 class RequiredWithAllTest extends TestCase
 {
     public function testCheck(): void
     {
-        $rule = new RequiredWithAll();
+        $rule = new RequiredWithAllRule();
 
         $data = [
             'foo' => 'yes',

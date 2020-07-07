@@ -11,14 +11,14 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\Accepted;
+use OpxCore\Validator\Rules\AcceptedRule;
 use PHPUnit\Framework\TestCase;
 
 class AcceptedTest extends TestCase
 {
     public function testCheck(): void
     {
-        $rule = new Accepted;
+        $rule = new AcceptedRule;
 
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertTrue($rule->check('name', ['name' => 'on']));

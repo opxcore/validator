@@ -12,11 +12,14 @@
 namespace OpxCore\Validator\Rules;
 
 use OpxCore\Validator\Interfaces\Rule;
+use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 
-class Confirmed implements Rule
+class RequiredRule implements Rule
 {
+    use ChecksNotEmpty;
+
     /**
-     * The field under validation must have a matching {field}_confirmation field when it is present.
+     * The field under validation must not be empty when it is present.
      *
      * @param string $key
      * @param array $data
@@ -26,7 +29,6 @@ class Confirmed implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        return !array_key_exists($key, $data) ||
-            (array_key_exists("{$key}_confirmation", $data) && ($data[$key] === $data["{$key}_confirmation"]));
+        return array_key_exists($key, $data) && $this->notEmpty($data[$key]);
     }
 }

@@ -12,14 +12,11 @@
 namespace OpxCore\Validator\Rules;
 
 use OpxCore\Validator\Interfaces\Rule;
-use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 
-class Filled implements Rule
+class PresentRule implements Rule
 {
-    use ChecksNotEmpty;
-
     /**
-     * The field under validation must not be empty when it is present.
+     * The field under validation must be present in the input data but can be empty.
      *
      * @param string $key
      * @param array $data
@@ -29,6 +26,6 @@ class Filled implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        return !array_key_exists($key, $data) || $this->notEmpty($data[$key]);
+        return array_key_exists($key, $data);
     }
 }

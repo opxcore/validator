@@ -10,7 +10,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\Required;
+use OpxCore\Validator\Rules\RequiredRule;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 
@@ -19,7 +19,7 @@ class RequiredTest extends TestCase
 
     public function testCheck(): void
     {
-        $rule = new Required;
+        $rule = new RequiredRule;
 
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertTrue($rule->check('name', ['name' => 1]));

@@ -10,7 +10,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\Confirmed;
+use OpxCore\Validator\Rules\ConfirmedRule;
 use PHPUnit\Framework\TestCase;
 
 class ConfirmedTest extends TestCase
@@ -18,7 +18,7 @@ class ConfirmedTest extends TestCase
 
     public function testCheck(): void
     {
-        $rule = new Confirmed;
+        $rule = new ConfirmedRule;
 
         $this->assertTrue($rule->check('test', [
             'test' => 'pass',

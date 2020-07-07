@@ -11,7 +11,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\RequiredWith;
+use OpxCore\Validator\Rules\RequiredWithRule;
 use PHPUnit\Framework\TestCase;
 
 class RequiredWithTest extends TestCase
@@ -19,7 +19,7 @@ class RequiredWithTest extends TestCase
 
     public function testCheck(): void
     {
-        $rule = new RequiredWith;
+        $rule = new RequiredWithRule;
 
         $data = [
             'foo' => 'yes',

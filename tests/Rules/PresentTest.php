@@ -10,7 +10,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\Present;
+use OpxCore\Validator\Rules\PresentRule;
 use PHPUnit\Framework\TestCase;
 
 class PresentTest extends TestCase
@@ -18,7 +18,7 @@ class PresentTest extends TestCase
 
     public function testCheck():void
     {
-        $rule = new Present;
+        $rule = new PresentRule;
 
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertTrue($rule->check('name', ['name' => 0]));

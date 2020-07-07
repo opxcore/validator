@@ -13,7 +13,7 @@ namespace OpxCore\Validator\Rules;
 
 use OpxCore\Validator\Interfaces\Rule;
 
-class Accepted implements Rule
+class AcceptedRule implements Rule
 {
     /**
      * The field under validation must be equal to 'yes', 'on', '1', 1, true, 'true' when it is present.

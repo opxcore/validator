@@ -13,7 +13,7 @@ namespace OpxCore\Validator\Rules;
 
 use OpxCore\Validator\Interfaces\Rule;
 
-class ActiveUrl implements Rule
+class ActiveUrlRule implements Rule
 {
     /**
      * Check if value is an active URL by retrieving given url headers (with redirects flow) for 200 status code.

@@ -15,7 +15,7 @@ use OpxCore\Validator\Interfaces\Rule;
 use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 use OpxCore\Validator\Rules\Traits\ChecksParametersCount;
 
-class RequiredWith implements Rule
+class RequiredWithRule implements Rule
 {
     use ChecksNotEmpty,
         ChecksParametersCount;

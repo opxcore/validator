@@ -12,14 +12,14 @@ namespace OpxCore\Tests\Validator\Rules;
 
 use OpxCore\Validator\Exceptions\InvalidParameterException;
 use OpxCore\Validator\Exceptions\InvalidParametersCountException;
-use OpxCore\Validator\Rules\RequiredIf;
+use OpxCore\Validator\Rules\RequiredIfRule;
 use PHPUnit\Framework\TestCase;
 
 class RequiredIfTest extends TestCase
 {
     public function testRegularCheck(): void
     {
-        $rule = new RequiredIf;
+        $rule = new RequiredIfRule;
 
         $this->assertTrue($rule->check('name', ['name' => 'yes', 'another' => 'test'], ['another', 'test']));
 
@@ -31,7 +31,7 @@ class RequiredIfTest extends TestCase
 
     public function testInvalidParameters(): void
     {
-        $rule = new RequiredIf;
+        $rule = new RequiredIfRule;
         $this->expectException(InvalidParametersCountException::class);
         $rule->check('name', ['name' => 'yes', 'another' => 'test']);
     }
@@ -39,30 +39,30 @@ class RequiredIfTest extends TestCase
     public function testInvalidCondition(): void
     {
         $this->expectException(InvalidParameterException::class);
-        new RequiredIf('invalid_type');
+        new RequiredIfRule('invalid_type');
     }
 
     public function testBooleanCheck(): void
     {
-        $rule = new RequiredIf(true);
+        $rule = new RequiredIfRule(true);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertFalse($rule->check('name', ['name' => null]));
         $this->assertFalse($rule->check('name', ['wrong_name' => 'yes']));
 
-        $rule = new RequiredIf(false);
+        $rule = new RequiredIfRule(false);
         $this->assertFalse($rule->check('name', ['name' => 'yes']));
         $this->assertFalse($rule->check('name', ['name' => null]));
     }
 
     public function testCallableCheck(): void
     {
-        $rule = new RequiredIf(fn() => true);
+        $rule = new RequiredIfRule(fn() => true);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
 
-        $rule = new RequiredIf(fn() => false);
+        $rule = new RequiredIfRule(fn() => false);
         $this->assertFalse($rule->check('name', ['name' => 'yes']));
 
-        $rule = new RequiredIf(fn() => 'test');
+        $rule = new RequiredIfRule(fn() => 'test');
         $this->expectException(InvalidParameterException::class);
         $rule->check('name', ['name' => 'yes']);
     }

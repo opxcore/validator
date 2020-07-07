@@ -11,7 +11,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\ActiveUrl;
+use OpxCore\Validator\Rules\ActiveUrlRule;
 use PHPUnit\Framework\TestCase;
 
 class ActiveUrlTest extends TestCase
@@ -19,7 +19,7 @@ class ActiveUrlTest extends TestCase
 
     public function testCheck(): void
     {
-        $rule = new ActiveUrl;
+        $rule = new ActiveUrlRule;
 
         $this->assertTrue($rule->check('url', ['url' => 'https://yandex.ru/']));
         $this->assertTrue($rule->check('url', ['url' => 'https://yandex.ru/search']));

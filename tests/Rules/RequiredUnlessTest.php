@@ -12,14 +12,14 @@ namespace OpxCore\Tests\Validator\Rules;
 
 use OpxCore\Validator\Exceptions\InvalidParameterException;
 use OpxCore\Validator\Exceptions\InvalidParametersCountException;
-use OpxCore\Validator\Rules\RequiredUnless;
+use OpxCore\Validator\Rules\RequiredUnlessRule;
 use PHPUnit\Framework\TestCase;
 
 class RequiredUnlessTest extends TestCase
 {
     public function testRegularCheck(): void
     {
-        $rule = new RequiredUnless;
+        $rule = new RequiredUnlessRule;
 
         $this->assertTrue($rule->check('name', ['name' => 'yes', 'another' => 'test'], ['another', 'test']));
         $this->assertTrue($rule->check('name', ['name' => null, 'another' => 'test'], ['another', 'test']));
@@ -34,7 +34,7 @@ class RequiredUnlessTest extends TestCase
 
     public function testInvalidParameters(): void
     {
-        $rule = new RequiredUnless;
+        $rule = new RequiredUnlessRule;
         $this->expectException(InvalidParametersCountException::class);
         $rule->check('name', ['name' => 'yes', 'another' => 'test']);
     }
@@ -42,31 +42,31 @@ class RequiredUnlessTest extends TestCase
     public function testInvalidCondition(): void
     {
         $this->expectException(InvalidParameterException::class);
-        new RequiredUnless('invalid_type');
+        new RequiredUnlessRule('invalid_type');
     }
 
     public function testBooleanCheck(): void
     {
-        $rule = new RequiredUnless(true);
+        $rule = new RequiredUnlessRule(true);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertTrue($rule->check('name', ['name' => null]));
 
-        $rule = new RequiredUnless(false);
+        $rule = new RequiredUnlessRule(false);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertFalse($rule->check('name', ['name' => null]));
     }
 
     public function testCallableCheck(): void
     {
-        $rule = new RequiredUnless(fn() => true);
+        $rule = new RequiredUnlessRule(fn() => true);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertTrue($rule->check('name', ['name' => null]));
 
-        $rule = new RequiredUnless(fn() => false);
+        $rule = new RequiredUnlessRule(fn() => false);
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertFalse($rule->check('name', ['name' => null]));
 
-        $rule = new RequiredUnless(fn() => 'test');
+        $rule = new RequiredUnlessRule(fn() => 'test');
         $this->expectException(InvalidParameterException::class);
         $rule->check('name', ['name' => 'yes']);
     }

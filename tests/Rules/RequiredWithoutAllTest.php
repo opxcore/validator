@@ -10,7 +10,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\RequiredWithoutAll;
+use OpxCore\Validator\Rules\RequiredWithoutAllRule;
 use PHPUnit\Framework\TestCase;
 
 class RequiredWithoutAllTest extends TestCase
@@ -18,7 +18,7 @@ class RequiredWithoutAllTest extends TestCase
 
     public function testCheck(): void
     {
-        $rule = new RequiredWithoutAll;
+        $rule = new RequiredWithoutAllRule;
 
         $data = [
             'foo' => 'yes',

@@ -10,7 +10,7 @@
 
 namespace OpxCore\Tests\Validator\Rules;
 
-use OpxCore\Validator\Rules\Filled;
+use OpxCore\Validator\Rules\FilledRule;
 use PHPUnit\Framework\TestCase;
 use SplFileInfo;
 
@@ -19,7 +19,7 @@ class FilledTest extends TestCase
 
     public function testCheck(): void
     {
-        $rule = new Filled;
+        $rule = new FilledRule;
 
         $this->assertTrue($rule->check('name', ['name' => 'yes']));
         $this->assertTrue($rule->check('name', ['name' => 1]));

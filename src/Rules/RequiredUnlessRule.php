@@ -18,14 +18,14 @@ use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 use OpxCore\Validator\Rules\Traits\ChecksParametersCount;
 use OpxCore\Validator\Rules\Traits\HasBoolCondition;
 
-class RequiredIf implements Rule
+class RequiredUnlessRule implements Rule
 {
     use ChecksNotEmpty,
         ChecksParametersCount,
         HasBoolCondition;
 
     /**
-     * The field under validation must not be empty when it is present.
+     * The field under validation must be present and not empty if the {another_field} is not equal to the value.
      *
      * @param string $key
      * @param array $data
@@ -49,6 +49,6 @@ class RequiredIf implements Rule
             $condition = $this->evoluteCondition();
         }
 
-        return array_key_exists($key, $data) && $this->notEmpty($data[$key]) && $condition;
+        return $condition || (array_key_exists($key, $data) && $this->notEmpty($data[$key]));
     }
 }

@@ -14,7 +14,7 @@ namespace OpxCore\Validator\Rules;
 use OpxCore\Validator\Interfaces\Rule;
 use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 
-class Required implements Rule
+class FilledRule implements Rule
 {
     use ChecksNotEmpty;
 
@@ -29,6 +29,6 @@ class Required implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        return array_key_exists($key, $data) && $this->notEmpty($data[$key]);
+        return !array_key_exists($key, $data) || $this->notEmpty($data[$key]);
     }
 }

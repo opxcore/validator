@@ -13,10 +13,10 @@ namespace OpxCore\Validator\Rules;
 
 use OpxCore\Validator\Interfaces\Rule;
 
-class Present implements Rule
+class ConfirmedRule implements Rule
 {
     /**
-     * The field under validation must be present in the input data but can be empty.
+     * The field under validation must have a matching {field}_confirmation field when it is present.
      *
      * @param string $key
      * @param array $data
@@ -26,6 +26,7 @@ class Present implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        return array_key_exists($key, $data);
+        return !array_key_exists($key, $data) ||
+            (array_key_exists("{$key}_confirmation", $data) && ($data[$key] === $data["{$key}_confirmation"]));
     }
 }

@@ -15,13 +15,13 @@ use OpxCore\Validator\Interfaces\Rule;
 use OpxCore\Validator\Rules\Traits\ChecksNotEmpty;
 use OpxCore\Validator\Rules\Traits\ChecksParametersCount;
 
-class RequiredWithoutAll implements Rule
+class RequiredWithAllRule implements Rule
 {
     use ChecksNotEmpty,
         ChecksParametersCount;
 
     /**
-     * The field under validation must be present and not empty only when all of the other specified fields are not present.
+     * The field under validation must be present and not empty only if all of the other specified fields are present.
      *
      * @param string $key
      * @param array $data
@@ -31,17 +31,17 @@ class RequiredWithoutAll implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        $this->checkParametersCount('required_without_all', $key, 1, $parameters);
+        $this->checkParametersCount('required_with_all', $key, 1, $parameters);
 
-        $hasNoAll = true;
+        $hasAll = true;
 
         foreach ($parameters as $parameter) {
-            if (array_key_exists($parameter, $data)) {
-                $hasNoAll = false;
+            if (!array_key_exists($parameter, $data)) {
+                $hasAll = false;
                 continue;
             }
         }
 
-        return !$hasNoAll || (array_key_exists($key, $data) && $this->notEmpty($data[$key]));
+        return !$hasAll || (array_key_exists($key, $data) && $this->notEmpty($data[$key]));
     }
 }
