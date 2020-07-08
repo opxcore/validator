@@ -27,6 +27,7 @@ class DateRuleTest extends TestCase
         $this->assertTrue($rule->check('date', ['date' => '01/01/2000']));
         $this->assertTrue($rule->check('date', ['date' => new DateTime]));
         $this->assertTrue($rule->check('date', ['date' => new DateTimeImmutable]));
+        $this->assertTrue($rule->check('date', ['wrong' => new DateTimeImmutable]));
 
         $this->assertFalse($rule->check('date', ['date' => '1325376000']));
         $this->assertFalse($rule->check('date', ['date' => 'Not a date']));
