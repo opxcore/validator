@@ -49,8 +49,9 @@ $rules = [
 
 So this way you could pass to validator your own rules implementing rule interface.
 
-Optionally, some rules could be created with additionally parameters (see description of rules below). For example, `'required_if'` rule could be created
-with specifying condition for this rule:
+Optionally, some rules could be created with additionally parameters (see description of rules below). 
+
+For example, `'required_if'` rule could be created with specifying condition for this rule:
 ```
 $requiredWithoutAccount = new ReqiredIfRule(fn()=>!$user->has_account);
 
@@ -62,6 +63,7 @@ $rules = [
     ], 
 ];    
 ```
+
 
 ## Considerations
 - "empty" means the value is null, an empty string or string with only spaces, an empty array or Countable object or
@@ -76,7 +78,7 @@ noticed in rules description.
 
 - TODO `some` - validation of the field passes if at least one rule passes
 
-- TODO `nullable` - the field under validation can be null.
+- TODO `nullable` - the field under validation may be null.
 
 ## Rules
 
@@ -177,16 +179,17 @@ Note: When using the regex / not_regex patterns, it may be necessary to specify 
 
 ### Size
 
-All size rules has one required parameter and one optional. If only one parameter specified, it would be used for strict comparision.
+All size rules has one required parameter and one optional. If only one parameter specified, it would be used for comparision.
 Giving a second parameter will define range of values as min and max value.
+
 Examples:
-'value:10' - value must be equal to 10;
-'value:>10' - value must be greater than 10;
-'count:>=3' - items count must be greater or equal to 3;
-'value:<10' - value must be less than 10;
-'length:<=8' - string length must be less or equal to 8;
-'size:100,2000' - file must be not smaller than 100kb and not bigger than 2000kb;
-'digits:>2,<4' - number of digits in numeric must be greater than 2 and less than 4;
+- 'value:10' - value must be equal to 10;
+- 'value:>10' - value must be greater than 10;
+- 'count:>=3' - items count must be greater or equal to 3;
+- 'value:<10' - value must be less than 10;
+- 'length:<=8' - string length must be less or equal to 8;
+- 'size:100,2000' - file must be not smaller than 100kb and not bigger than 2000kb;
+- 'digits:>2,<4' - number of digits in numeric must be greater than 2 and less than 4;
  
 `value:value{,value}` - must be numeric and have value passing rules above.
 
