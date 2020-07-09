@@ -188,7 +188,7 @@ Examples:
 - 'count:>=3' - items count must be greater or equal to 3;
 - 'value:<10' - value must be less than 10;
 - 'length:<=8' - string length must be less or equal to 8;
-- 'size:100,2000' - file must be not smaller than 100kb and not bigger than 2000kb;
+- 'size:100,2000' - file must be not smaller than 100 KiB and not bigger than 2000 KiB;
 - 'digits:>2,<4' - number of digits in numeric must be greater than 2 and less than 4;
  
 `value:value{,value}` - must be numeric and have value passing rules above.
@@ -197,7 +197,7 @@ Examples:
 
 `length:value{,value}{,encoding}` - must be string and have count of characters passing rules above. Third parameter can be encoding of string, 'UTF-8' by default.
 
-`size:value{,value}` - must be file and have size in kilobytes passing rules above.
+`size:value{,value}` - must be file and have size in KiB (1024 byte) passing rules above.
 
 - TODO `dimensions` - must be an image file meeting the dimension constraints as specified by the rule's parameters:
     min_width, 
