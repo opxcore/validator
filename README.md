@@ -4,23 +4,83 @@ Complete description coming soon.
 
 # Rules
 
-General format: `rule:parameter,parameter|rule|rule`
+## General rules format
 
-Considerations:
- - "empty" means the value is null, an empty string or string with only spaces, an empty array or Countable object, an uploaded file with no file name.
- - By default, all validation rules would be passed if fields related to these rules are not present. Another behavior noticed in rules description.
+Set of rules for data validation must be defined by an array keyed by name of field to validate and containing rules to 
+validate this field. Rules for field validation can be defined by string or array. 
 
-## Available Validation Rules:
+Example below shows 'email' field must be present in data, not empty and be valid email format according RFC, 'name' 
+field must be string or null if it presents in data, 'password' field must be present, be string with length of six or
+more characters and match `password_confirmation` field. 
+```
+$rules = [
+    'email' => 'required|email',
+    'name' => 'string|nullable',
+    'password' => 'required|string|length:>=6|confirmed',
+];
+```
 
-### Modifiers
+### String format
+
+String rules format contains set of rules separated by `'|'` sign. Each rule consists of rule name and parameters 
+separated by `':'`. Parameters must be separated by comma `','`.
+
+`'rule_name:parameter,parameter,...|rule_name:parameter,parameter,...'`
+
+Some rules do not require any parameters, so only rule name must be used (actually, all given parameters will be 
+ignored, no exceptions will be thrown). Some rules require parameters, but if there are no enough ones 
+`OpxCore\Validator\Exceptions\InvalidParametersCountException` exception will be thrown. For required and optional
+parameters see description of rules below. 
+
+### Array format
+
+Each array element can be string defining single rule (see above) or instance of `OpxCore\Validator\Interfaces\Rule`.
+
+Example:
+```
+$rules = [
+    'email' => [
+        new RequiredRule(),
+        new EmailRule(),
+    ],
+    ...
+];
+```
+
+So this way you could pass to validator your own rules implementing rule interface.
+
+Optionally, some rules could be created with additionally parameters (see description of rules below). For example, `'required_if'` rule could be created
+with specifying condition for this rule:
+```
+$requiredWithoutAccount = new ReqiredIfRule(fn()=>!$user->has_account);
+
+$rules = [
+    'first_name' => [
+        $requiredWithoutAccount,
+        'string',
+        'length:>2',
+    ], 
+];    
+```
+
+## Considerations
+- "empty" means the value is null, an empty string or string with only spaces, an empty array or Countable object or
+ file with no file name.
+- By default, all validation rules would be passed if fields related to these rules are not present. Another behavior 
+noticed in rules description.
+- Validation modifiers must be specified first to clearer and easy to read (but not required).
+
+## Modifiers
 
 - TODO `bail` - stop running validation rules for the field under validation after the first validation failure.
 
-- TODO `or` - validation of the field passes if at least one rule passes
+- TODO `some` - validation of the field passes if at least one rule passes
 
 - TODO `nullable` - the field under validation can be null.
 
-### General 
+## Rules
+
+### Common 
 
 `accepted` - must be equal to 'yes', 'on', '1', 1, true, 'true'.
 
@@ -50,13 +110,13 @@ Considerations:
 
 - TODO `excluded_unless`
 
-### URL checks
+### URL
 
 `active_url` - Checks if url return HTTP 200 response header (uses get_headers()) when it is present.
 
 - TODO `uri:scheme,authority,path,query,fragment` - must be a valid uniform resource identifier (RFC 3986) 
 
-### Type checks
+### Type
 
 `array` - must be a PHP array.
 
@@ -76,7 +136,7 @@ Considerations:
 
 - TODO `timezone` - must be a valid timezone identifier according to the timezone_identifiers_list PHP function.
 
-### Format checks
+### Format
 
 - TODO `format:alpha,num,dash,underscore,slash` must be entirely:
     alpha - alphabetic characters;
@@ -145,7 +205,7 @@ Examples:
     height, 
     ratio (should be represented as width divided by height. This can be specified either by a statement like 3/2 or a float).
 
-### Value checks
+### Value
 
 - TODO `starts_with:foo,bar,...`
 
