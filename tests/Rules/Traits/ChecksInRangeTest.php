@@ -13,7 +13,7 @@ namespace OpxCore\Tests\Validator\Rules\Traits;
 use OpxCore\Validator\Rules\Traits\ChecksInRange;
 use PHPUnit\Framework\TestCase;
 
-class ChecksValueTest extends TestCase
+class ChecksInRangeTest extends TestCase
 {
     use ChecksInRange;
 
