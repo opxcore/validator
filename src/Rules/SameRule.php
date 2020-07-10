@@ -11,6 +11,7 @@
 
 namespace OpxCore\Validator\Rules;
 
+use OpxCore\Validator\Exceptions\InvalidParametersCountException;
 use OpxCore\Validator\Interfaces\Rule;
 use OpxCore\Validator\Rules\Traits\ChecksParametersCount;
 
@@ -26,6 +27,8 @@ class SameRule implements Rule
      * @param array $parameters
      *
      * @return  bool
+     *
+     * @throws  InvalidParametersCountException
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {

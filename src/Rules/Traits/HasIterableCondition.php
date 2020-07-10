@@ -12,28 +12,29 @@
 namespace OpxCore\Validator\Rules\Traits;
 
 use OpxCore\Validator\Exceptions\InvalidParameterException;
+use OpxCore\Validator\Exceptions\InvalidParametersCountException;
 
 trait HasIterableCondition
 {
-    /** @var array|callable|null Condition to check alternately to parameters. */
-    protected $condition;
+    /** @var array|callable|null Tokens to use alternately to parameters. */
+    protected $tokens;
 
     /**
      * Constructor.
      *
-     * @param array|callable|null $condition
+     * @param array|callable|null $tokens
      *
      * @return  void
      *
      * @throws  InvalidParameterException
      */
-    public function __construct($condition = null)
+    public function __construct($tokens = null)
     {
-        if (!is_iterable($condition) && !is_callable($condition) && !is_null($condition)) {
+        if (!is_iterable($tokens) && !is_callable($tokens) && !is_null($tokens)) {
             throw new InvalidParameterException('Type mismatch. Condition must be type of iterable, callable or null.');
         }
 
-        $this->condition = $condition;
+        $this->tokens = $tokens;
     }
 
     /**
@@ -43,12 +44,12 @@ trait HasIterableCondition
      *
      * @throws  InvalidParameterException
      */
-    protected function evoluteCondition(): iterable
+    protected function formTokens(): iterable
     {
-        if (is_callable($this->condition)) {
-            $condition = call_user_func($this->condition);
+        if (is_callable($this->tokens)) {
+            $condition = call_user_func($this->tokens);
         } else {
-            $condition = $this->condition;
+            $condition = $this->tokens;
         }
 
         if (!is_iterable($condition)) {
@@ -63,8 +64,34 @@ trait HasIterableCondition
      *
      * @return  bool
      */
-    protected function hasCondition(): bool
+    protected function hasTokens(): bool
     {
-        return $this->condition !== null;
+        return $this->tokens !== null;
+    }
+
+    /**
+     * Get formed conditions.
+     *
+     * @param string $ruleName
+     * @param string $key
+     * @param int $count
+     * @param array $parameters
+     *
+     * @return  iterable
+     *
+     * @throws  InvalidParameterException
+     * @throws  InvalidParametersCountException
+     */
+    protected function getTokens(string $ruleName, string $key, int $count, array $parameters): iterable
+    {
+        if ($this->hasTokens()) {
+
+            return $this->formTokens();
+        }
+
+        // If condition not set use parameters
+        $this->checkParametersCount($ruleName, $key, $count, $parameters);
+
+        return $parameters;
     }
 }

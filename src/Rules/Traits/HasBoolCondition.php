@@ -12,6 +12,7 @@
 namespace OpxCore\Validator\Rules\Traits;
 
 use OpxCore\Validator\Exceptions\InvalidParameterException;
+use OpxCore\Validator\Exceptions\InvalidParametersCountException;
 
 trait HasBoolCondition
 {
@@ -43,7 +44,7 @@ trait HasBoolCondition
      *
      * @throws  InvalidParameterException
      */
-    protected function evoluteCondition(): bool
+    protected function formCondition(): bool
     {
         if (is_callable($this->condition)) {
             $condition = call_user_func($this->condition);
@@ -66,5 +67,32 @@ trait HasBoolCondition
     protected function hasCondition(): bool
     {
         return $this->condition !== null;
+    }
+
+    /**
+     * Get formed condition.
+     *
+     * @param string $ruleName
+     * @param string $key
+     * @param int $count
+     * @param array $parameters
+     * @param array $data
+     *
+     * @return  bool
+     *
+     * @throws  InvalidParameterException
+     * @throws  InvalidParametersCountException
+     */
+    protected function getCondition(string $ruleName, string $key, int $count, array $parameters, array $data): bool
+    {
+        if ($this->hasCondition()) {
+
+            return $this->formCondition();
+        }
+
+        // If condition not set use parameters
+        $this->checkParametersCount($ruleName, $key, $count, $parameters);
+
+        return array_key_exists($parameters[0], $data) && ($data[$parameters[0]] === $parameters[1]);
     }
 }

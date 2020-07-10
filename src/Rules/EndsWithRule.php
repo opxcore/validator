@@ -44,16 +44,7 @@ class EndsWithRule implements Rule
             return false;
         }
 
-        if ($this->hasCondition()) {
-
-            $tokens = $this->evoluteCondition();
-
-        } else {
-
-            // If condition not set use parameters
-            $this->checkParametersCount('ends_with', $key, 1, $parameters);
-            $tokens = $parameters;
-        }
+        $tokens = $this->getTokens('ends_with', $key, 1, $parameters);
 
         foreach ($tokens as $token) {
             if (is_string($token) && mb_strpos($data[$key], $token) === mb_strlen($data[$key]) - mb_strlen($token)) {

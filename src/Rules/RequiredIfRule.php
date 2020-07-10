@@ -38,16 +38,7 @@ class RequiredIfRule implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        if ($this->hasCondition()) {
-
-            $condition = $this->evoluteCondition();
-
-        } else {
-
-            // If condition not set use parameters
-            $this->checkParametersCount('required_if', $key, 2, $parameters);
-            $condition = array_key_exists($parameters[0], $data) && ($data[$parameters[0]] === $parameters[1]);
-        }
+        $condition = $this->getCondition('required_if', $key, 2, $parameters, $data);
 
         return array_key_exists($key, $data) && $this->notEmpty($data[$key]) && $condition;
     }
