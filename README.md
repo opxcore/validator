@@ -103,18 +103,21 @@ noticed in rules description.
 `required` - must be present in the input data and not empty.
 
 `required_if:another_field,value` - must be present and not empty if the {another_field} is equal to the value.
-    You can specify condition in the constructor (it must be bool or callable returning bool): `$rule = new RequiredIf(fn() => true);`.
-    In this case checking of another field would be ignored.
+    You can specify condition in the constructor (it must be bool or callable returning bool). In this case checking of 
+    another field would be ignored. `$rule = new RequiredIf(fn() => true);`
     
-`required_unless:another_field,value` - inverse of `required_if`, must be present and not empty if the {another_field} is not equal to the value.
+`required_unless:another_field,value` - inverse of `required_if`, must be present and not empty if the {another_field} 
+is not equal to the value.
 
 `required_with:foo,bar,...` - must be present and not empty only if any of the other specified fields are present.
 
 `required_with_all:foo,bar,...` - must be present and not empty only if all of the other specified fields are present.
 
-`required_without:foo,bar,...` - must be present and not empty only when any of the other specified fields are not present.
+`required_without:foo,bar,...` - must be present and not empty only when any of the other specified fields are not 
+present.
 
-`required_without_all:foo,bar,...` - must be present and not empty only when all of the other specified fields are not present.
+`required_without_all:foo,bar,...` - must be present and not empty only when all of the other specified fields are not 
+present.
 
 ### URL
 
@@ -134,7 +137,7 @@ noticed in rules description.
 
 - TODO `image` - must be an image file (jpeg, png, bmp, gif, svg, or webp)
 
-`integer` - must be an integer or a string or numeric value that contains an integer.
+`integer` - must be an integer, a string or numeric value that contains an integer.
 
 `json` - must be a valid JSON string.
 
@@ -146,14 +149,11 @@ noticed in rules description.
 
 ### Format
 
-- TODO `format:alpha,num,dash,underscore,slash` must be entirely:
-    alpha - alphabetic characters;
-    num - numeric characters;
-    dash;
-    underscore;
-    slash;
+`format:alpha,num,dash,underscore,slash,space` must be a string containing: alpha (any unicode alphabetic characters), 
+num (any digits), dashes, underscores, slashes, spaces.
 
-- TODO `email` - must be formatted as an e-mail address. By default, the RFCValidation validator is applied, but you can apply other validation styles as well:
+- TODO `email` - must be formatted as an e-mail address. By default, the RFCValidation validator is applied, but you 
+can apply other validation styles as well:
     rfc: RFCValidation;
     strict: NoRFCWarningsValidation;
     dns: DNSCheckValidation (require the PHP intl extension);
@@ -199,7 +199,8 @@ Examples:
 
 `count:value{,value}` - must be array or countable and have count of items passing rules above.
 
-`length:value{,value}{,encoding}` - must be string and have count of characters passing rules above. Third parameter can be encoding of string, 'UTF-8' by default.
+`length:value{,value}{,encoding}` - must be string and have count of characters passing rules above. The third parameter
+ can be encoding of string, 'UTF-8' by default.
 
 `size:value{,value}` - must be file and have size in KiB (1024 byte) passing rules above.
 
@@ -210,7 +211,8 @@ Examples:
     max_height, 
     width, 
     height, 
-    ratio (should be represented as width divided by height. This can be specified either by a statement like 3/2 or a float).
+    ratio (should be represented as width divided by height. This can be specified either by a statement like 3/2 or a 
+    float).
 
 ### Value
 
