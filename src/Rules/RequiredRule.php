@@ -19,7 +19,7 @@ class RequiredRule implements Rule
     use ChecksNotEmpty;
 
     /**
-     * The field under validation must not be empty when it is present.
+     * The field under validation must be present in the input data and not empty.
      *
      * @param string $key
      * @param array $data

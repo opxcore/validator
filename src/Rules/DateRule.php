@@ -17,7 +17,7 @@ use DateTimeInterface;
 class DateRule implements Rule
 {
     /**
-     * The field under validation must be a PHP array.
+     * The field under validation must be a valid, non-relative date according to the strtotime() PHP function.
      *
      * @param string $key
      * @param array $data

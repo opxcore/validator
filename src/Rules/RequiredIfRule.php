@@ -25,7 +25,7 @@ class RequiredIfRule implements Rule
         HasBoolCondition;
 
     /**
-     * The field under validation must not be empty when it is present.
+     * The field under validation must be present and not empty if the {another_field} is equal to the value.
      *
      * @param string $key
      * @param array $data

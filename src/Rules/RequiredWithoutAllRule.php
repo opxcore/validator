@@ -21,7 +21,8 @@ class RequiredWithoutAllRule implements Rule
         ChecksParametersCount;
 
     /**
-     * The field under validation must be present and not empty only when all of the other specified fields are not present.
+     * The field under validation must be present and not empty only when all of the other specified fields
+     * are not present.
      *
      * @param string $key
      * @param array $data

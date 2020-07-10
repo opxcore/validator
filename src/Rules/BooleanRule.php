@@ -16,7 +16,7 @@ use OpxCore\Validator\Interfaces\Rule;
 class BooleanRule implements Rule
 {
     /**
-     * The field under validation must be a PHP array.
+     * The field under validation must be able to be cast as boolean. Accepted are true, false, 1, 0, "1", and "0".
      *
      * @param string $key
      * @param array $data

@@ -25,7 +25,8 @@ class RequiredUnlessRule implements Rule
         HasBoolCondition;
 
     /**
-     * The field under validation must be present and not empty if the {another_field} is not equal to the value.
+     * The field under validation inverse of `required_if`, must be present and
+     * not empty if the {another_field} is not equal to the value.
      *
      * @param string $key
      * @param array $data

@@ -21,7 +21,7 @@ class CountRule implements Rule
         ChecksInRange;
 
     /**
-     * The field under validation must be present and not empty only if all of the other specified fields are present.
+     * The field under validation must must be array or countable and have count of items passing comparision rules.
      *
      * @param string $key
      * @param array $data

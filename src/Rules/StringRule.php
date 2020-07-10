@@ -16,7 +16,7 @@ use OpxCore\Validator\Interfaces\Rule;
 class StringRule implements Rule
 {
     /**
-     * The field under validation must be a PHP array.
+     * The field under validation must be a string.
      *
      * @param string $key
      * @param array $data

@@ -16,7 +16,7 @@ use OpxCore\Validator\Interfaces\Rule;
 class NumericRule implements Rule
 {
     /**
-     * The field under validation must be a PHP array.
+     * The field under validation must be numeric.
      *
      * @param string $key
      * @param array $data

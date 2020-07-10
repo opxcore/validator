@@ -19,7 +19,7 @@ class SameRule implements Rule
     use ChecksParametersCount;
 
     /**
-     * The field under validation must be a PHP array.
+     * The field under validation must have a same type and value than another field.
      *
      * @param string $key
      * @param array $data

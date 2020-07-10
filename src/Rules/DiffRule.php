@@ -19,7 +19,7 @@ class DiffRule implements Rule
     use ChecksParametersCount;
 
     /**
-     * The field under validation must be a PHP array.
+     * The field under validation must have a different type or/and value than another field.
      *
      * @param string $key
      * @param array $data

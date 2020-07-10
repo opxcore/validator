@@ -92,6 +92,10 @@ noticed in rules description.
 
 `confirmed` - must have a matching (value and type) {field}_confirmation field when it is present.
 
+- TODO `excluded_if`
+
+- TODO `excluded_unless`
+
 `filled` - must not be empty.
 
 `present` - must be present in the input data but can be empty.
@@ -112,10 +116,6 @@ noticed in rules description.
 
 `required_without_all:foo,bar,...` - must be present and not empty only when all of the other specified fields are not present.
 
-- TODO `excluded_if`
-
-- TODO `excluded_unless`
-
 ### URL
 
 `active_url` - Checks if url return HTTP 200 response header (uses get_headers()) when it is present.
@@ -130,15 +130,17 @@ noticed in rules description.
 
 `date` - must be a valid, non-relative date according to the strtotime() PHP function.
 
+`file` - must be a file implementing SplFileInfo.
+
+- TODO `image` - must be an image file (jpeg, png, bmp, gif, svg, or webp)
+
 `integer` - must be an integer or a string or numeric value that contains an integer.
+
+`json` - must be a valid JSON string.
 
 `numeric` - must be numeric.
 
 `string` - must be a string.
-
-- TODO `image` - must be an image file (jpeg, png, bmp, gif, svg, or webp)
-
-`file` - must be a file.
 
 - TODO `timezone` - must be a valid timezone identifier according to the timezone_identifiers_list PHP function.
 
@@ -159,8 +161,6 @@ noticed in rules description.
     filter: use PHP filter_var function.
 
 - TODO `date_format:format` - must match the given format. You should use either date or date_format when validating a field, not both. This validation rule supports all formats supported by PHP DateTime class.
-
-- TODO `json` - must be a valid JSON string.
 
 - TODO `ip:v4,v6` - must be an IP address of v4 or v6 standard (if not specified), v4 or v6 if specified.
 
@@ -226,7 +226,7 @@ Examples:
 
 `same:field` - must have a same type and value than another field.
 
-`diff:field` - must have a different type or value than another field.
+`diff:field` - must have a different type or/and value than another field.
 
 - TODO `gt:field` - must be greater than the given field. The two fields must be of the same type.
 
