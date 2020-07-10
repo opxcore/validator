@@ -29,7 +29,7 @@ class DiffRule implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        $this->checkParametersCount('same', $key, 1, $parameters);
+        $this->checkParametersCount('diff', $key, 1, $parameters);
 
         return !array_key_exists($key, $data) || (array_key_exists($parameters[0], $data) && $data[$key] !== $data[$parameters[0]]);
     }

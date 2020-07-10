@@ -32,7 +32,7 @@ class SizeRule implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        $this->checkParametersCount('count', $key, 1, $parameters);
+        $this->checkParametersCount('size', $key, 1, $parameters);
 
         return !array_key_exists($key, $data) ||
             ($data[$key] instanceof SplFileInfo &&

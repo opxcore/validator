@@ -51,7 +51,7 @@ class EndsWithRule implements Rule
         } else {
 
             // If condition not set use parameters
-            $this->checkParametersCount('starts_with', $key, 1, $parameters);
+            $this->checkParametersCount('ends_with', $key, 1, $parameters);
             $tokens = $parameters;
         }
 

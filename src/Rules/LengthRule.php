@@ -31,7 +31,7 @@ class LengthRule implements Rule
      */
     public function check(string $key, array $data = [], array $parameters = []): bool
     {
-        $this->checkParametersCount('count', $key, 1, $parameters);
+        $this->checkParametersCount('length', $key, 1, $parameters);
 
         return !array_key_exists($key, $data) ||
             (is_string($data[$key]) &&

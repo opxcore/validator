@@ -46,7 +46,7 @@ class RequiredUnlessRule implements Rule
         } else {
 
             // If condition not set use parameters
-            $this->checkParametersCount('required_if', $key, 2, $parameters);
+            $this->checkParametersCount('required_unless', $key, 2, $parameters);
             $condition = array_key_exists($parameters[0], $data) && ($data[$parameters[0]] === $parameters[1]);
         }
 
