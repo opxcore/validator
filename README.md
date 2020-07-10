@@ -80,6 +80,10 @@ noticed in rules description.
 
 - TODO `nullable` - the field under validation may be null.
 
+- TODO `if_exists` - the field under validation may be null.
+
+- TODO `if_not_exists` - the field under validation may be null.
+
 ## Rules
 
 ### Common 
@@ -134,7 +138,7 @@ noticed in rules description.
 
 - TODO `image` - must be an image file (jpeg, png, bmp, gif, svg, or webp)
 
-- TODO `file` - must be a file
+`file` - must be a file.
 
 - TODO `timezone` - must be a valid timezone identifier according to the timezone_identifiers_list PHP function.
 
