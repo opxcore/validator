@@ -104,7 +104,7 @@ noticed in rules description.
 
 `required_if:another_field,value` - must be present and not empty if the {another_field} is equal to the value.
     You can specify condition in the constructor (it must be bool or callable returning bool). In this case checking of 
-    another field would be ignored. `$rule = new RequiredIf(fn() => true);`
+    another field would be ignored. `$rule = new RequiredIfRule(fn() => true);`
     
 `required_unless:another_field,value` - inverse of `required_if`, must be present and not empty if the {another_field} 
 is not equal to the value. You can specify condition in the constructor same as `required_if`.
@@ -216,13 +216,18 @@ Examples:
 
 ### Value
 
-`starts_with:foo,bar,...` - must be string and start with one of the given values.
+`starts_with:foo,bar,...` - must be string and start with one of the given values. You can specify values in the 
+constructor (it must be array, iterable or callable returning iterable). In this case checking of parameters would 
+be ignored. `$rule = new StartsWithRule(fn() => ['foo','bar']);`
 
-`ends_with:foo,bar,...` - must be string and end with one of the given values.
+`ends_with:foo,bar,...` - must be string and end with one of the given values. You can specify values in the 
+constructor same as `starts_with`.
 
-- TODO `in:foo,bar,...` - must be included in the given list of values.
+`in:foo,bar,...` - must be string and included in the given list of values. You can specify values in the 
+constructor same as `starts_with`.
 
-- TODO `not_in:foo,bar,...` - must be not included in the given list of values.
+`not_in:foo,bar,...` - must string and be not included in the given list of values. You can specify values in 
+the constructor same as `starts_with`.
 
 ### Comparision
 
