@@ -13,7 +13,6 @@ namespace OpxCore\Validator\Rules;
 
 use OpxCore\Validator\Interfaces\Rule;
 use OpxCore\Validator\Rules\Traits\ChecksParametersCount;
-use OpxCore\Validator\Rules\Traits\ChecksInRange;
 
 class FormatRule implements Rule
 {
@@ -62,8 +61,14 @@ class FormatRule implements Rule
         if (in_array('space', $parameters, true)) {
             $value = str_replace(' ', '', $value);
         }
+        if (in_array('dot', $parameters, true)) {
+            $value = str_replace('.', '', $value);
+        }
+        if (in_array('comma', $parameters, true)) {
+            $value = str_replace(',', '', $value);
+        }
 
-        // There ard disallowed symbols if filtered value is not empty.
+        // If filtered value is not empty there ard disallowed symbols.
         return $value === '';
     }
 }

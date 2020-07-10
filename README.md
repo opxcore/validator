@@ -149,8 +149,8 @@ present.
 
 ### Format
 
-`format:alpha,num,dash,underscore,slash,space` must be a string containing: alpha (any unicode alphabetic characters), 
-num (any digits), dashes, underscores, slashes, spaces.
+`format:alpha,num,dash,underscore,slash,space,dot,comma` must be a string containing any unicode alphabetic characters, digits, 
+dashes, underscores, slashes, spaces, dots, commas.
 
 - TODO `email` - must be formatted as an e-mail address. By default, the RFCValidation validator is applied, but you 
 can apply other validation styles as well:

@@ -41,7 +41,13 @@ class FormatRuleTest extends TestCase
         $this->assertFalse($rule->check('text', ['text' => 'some 4/2 big-mistake'], ['alpha', 'space', 'num', 'dash']));
         $this->assertTrue($rule->check('text', ['text' => 'some 4/2 big-mistake'], ['alpha', 'space', 'num', 'dash', 'slash']));
 
-        $this->assertFalse($rule->check('text', ['text' => 'some 4/2 big-mis_take'], ['alpha', 'space', 'num', 'dash']));
+        $this->assertFalse($rule->check('text', ['text' => 'some 4/2 big-mis_take'], ['alpha', 'space', 'num', 'dash', 'slash']));
         $this->assertTrue($rule->check('text', ['text' => 'some 4/2 big-mis_take'], ['alpha', 'space', 'num', 'dash', 'slash', 'underscore']));
+
+        $this->assertFalse($rule->check('text', ['text' => 'some 4/2 big-mis_take.'], ['alpha', 'space', 'num', 'dash', 'slash', 'underscore']));
+        $this->assertTrue($rule->check('text', ['text' => 'some 4/2 big-mis_take.'], ['alpha', 'space', 'num', 'dash', 'slash', 'underscore', 'dot']));
+
+        $this->assertFalse($rule->check('text', ['text' => 'some, 4/2 big-mis_take.'], ['alpha', 'space', 'num', 'dash', 'slash', 'underscore', 'dot']));
+        $this->assertTrue($rule->check('text', ['text' => 'some, 4/2 big-mis_take.'], ['alpha', 'space', 'num', 'dash', 'slash', 'underscore', 'dot', 'comma']));
     }
 }
