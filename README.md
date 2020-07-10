@@ -150,7 +150,7 @@ present.
 ### Format
 
 `format:alpha,num,dash,underscore,slash,space,dot,comma` must be a string containing any unicode alphabetic characters, digits, 
-dashes, underscores, slashes, spaces, dots, commas.
+dashes, underscores, slashes, spaces, dots, commas. Any combinations accepted.
 
 - TODO `email` - must be formatted as an e-mail address. By default, the RFCValidation validator is applied, but you 
 can apply other validation styles as well:
@@ -162,7 +162,7 @@ can apply other validation styles as well:
 
 - TODO `date_format:format` - must match the given format. You should use either date or date_format when validating a field, not both. This validation rule supports all formats supported by PHP DateTime class.
 
-- TODO `ip:v4,v6` - must be an IP address of v4 or v6 standard (if not specified), v4 or v6 if specified.
+`ip:v4,v6` - must be an IP address. Matches v4 or/and v6 standard if specified or both if no parameters given.
 
 - TODO `mimetype:video/avi,video/mpeg,...` - must match one of the given MIME types. See https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types.
 
