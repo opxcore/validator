@@ -171,7 +171,7 @@ can apply other validation styles as well:
     reading the file's contents and guessing its MIME type.
     A full listing of MIME types and their corresponding extensions may be found at the following location: https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
 
-- TODO `uuid` - must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID).
+`uuid` - must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID).
 
 - TODO `regex:pattern` - must match the given regular expression.
 Internally, this rule uses the PHP preg_match function. The pattern specified should obey the same formatting required by preg_match and thus also include valid delimiters. For example: 'email' => 'regex:/^.+@.+$/i'.
