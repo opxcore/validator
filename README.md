@@ -107,7 +107,7 @@ noticed in rules description.
     another field would be ignored. `$rule = new RequiredIf(fn() => true);`
     
 `required_unless:another_field,value` - inverse of `required_if`, must be present and not empty if the {another_field} 
-is not equal to the value.
+is not equal to the value. You can specify condition in the constructor same as `required_if`.
 
 `required_with:foo,bar,...` - must be present and not empty only if any of the other specified fields are present.
 
@@ -216,9 +216,9 @@ Examples:
 
 ### Value
 
-- TODO `starts_with:foo,bar,...`
+`starts_with:foo,bar,...` - must be string and start with one of the given values.
 
-- TODO `ends_with:foo,bar,...`
+`ends_with:foo,bar,...` - must be string and end with one of the given values.
 
 - TODO `in:foo,bar,...` - must be included in the given list of values.
 
