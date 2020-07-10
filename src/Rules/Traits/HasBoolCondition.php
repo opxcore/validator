@@ -19,7 +19,7 @@ trait HasBoolCondition
     protected $condition;
 
     /**
-     * RequiredIf constructor.
+     * Constructor.
      *
      * @param bool|callable|null $condition
      *
@@ -56,5 +56,15 @@ trait HasBoolCondition
         }
 
         return $condition;
+    }
+
+    /**
+     * Whether condition is set.
+     *
+     * @return  bool
+     */
+    protected function hasCondition(): bool
+    {
+        return $this->condition !== null;
     }
 }
