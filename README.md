@@ -224,9 +224,9 @@ Examples:
 
 ### Comparision
 
-- TODO `same:field` - must have a same value than field.
+`same:field` - must have a same type and value than another field.
 
-- TODO `diff:field` - must have a different value than field.
+`diff:field` - must have a different type or value than another field.
 
 - TODO `gt:field` - must be greater than the given field. The two fields must be of the same type.
 
